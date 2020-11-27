@@ -13,10 +13,12 @@ appointmentsRouter.post('/', (request, response) => {
 
   const findAppointmentInSameDate = appointments.find(appointment =>
     isEqual(parsedDate, appointment.date),
-    )
+  )
 
   if (findAppointmentInSameDate) {
-    return response.status(400).json({ message: "This appointment already exists !"})
+    return response
+      .status(400)
+      .json({ message: "This appointment already exists !" })
   }
 
   const appointment = new Appointment(provider, parsedDate)
